@@ -27,8 +27,8 @@ class TaskManager
 
   # unschedule/stop a job
   def unschedule(key)
-    @jobs[key].unschedule
-    @jobs[key] = nil
+    jobs[key].unschedule
+    jobs[key] = nil
     say "Job #{key} stopped"
   end
 
