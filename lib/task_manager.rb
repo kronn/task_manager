@@ -1,5 +1,4 @@
 # needs rufus-scheduler
-require 'rubygems'
 require 'rufus/scheduler'
 require 'pathname'
 
