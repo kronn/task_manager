@@ -1,8 +1,10 @@
 = task_manager
 
-== 
+A simple wrapper around the Rufus::Scheduler to have a more configurable setup.
 
 == Installation
+
+  gem install task_manager
 
 == Usage
 
@@ -13,7 +15,7 @@ you're welcome.  This should get you started:
 
   $ git clone git://github.com/kronn/task_manager.git
   $ bundle install
-  $ rake
+  $ ruby test/task_manager_test.rb
 
 Bundler is only used for installing dependencies. 
 
