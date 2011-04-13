@@ -1,0 +1,36 @@
+= task_manager
+
+== 
+
+== Installation
+
+== Usage
+
+== Development
+
+If you want to develop it further, patch something or are just plain curious:
+you're welcome.  This should get you started:
+
+  $ git clone git://github.com/kronn/task_manager.git
+  $ bundle install
+  $ rake
+
+Bundler is only used for installing dependencies. 
+
+The usual pattern for github-projects applies:
+
+* Fork the project.
+* Add failing tests.
+* Improve the code.
+* Send me a pull request.
+
+I'll take a look at it and try to integrate it. If I cannot apply your changes
+or don't want to, I'll let you know.
+
+== Documentation
+
+see doc/*
+
+== Copyright
+
+Copyright (c) 2010-2011 Matthias Viehweger. See doc/LICENSE for details.
