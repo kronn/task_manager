@@ -36,7 +36,7 @@ class TaskManager
   def execute_task(cmd_string)
     shortened_cmd = cmd_string.gsub(/--trace/, '').strip
     say   "starting #{shortened_cmd}"
-    if system("cd #{path}; RAILS_ENV=#{env} #{cmd_string} >/dev/null 2>>#{path}/log/#{env}.scheduler.log")
+    if system("cd #{path}; RAILS_ENV=#{env} #{cmd_string} >>#{path}/log/#{env}.scheduler.task_output.log 2>>#{path}/log/#{env}.scheduler.log")
       say "finished #{shortened_cmd}"
     else
       say "ERROR in #{shortened_cmd}"
