@@ -1,9 +1,4 @@
-require 'rubygems'
-
-require 'more_unit_test/assert_stdout'
-require 'test/unit'
-
-require 'task_manager'
+require File.expand_path('../test_helper', __FILE__)
 
 class TaskManagerTest < Test::Unit::TestCase
   # remember to clean up after each test-run
