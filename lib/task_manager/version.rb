@@ -2,7 +2,7 @@
 
 unless defined?(TaskManager::VERSION)
   module TaskManager
-    VERSION = "0.0.1"
+    VERSION = "0.0.2"
     DATE = File.mtime(__FILE__)
     SUMMARY = 'A simple wrapper around the Rufus::Scheduler to have a more configurable setup.'
     DESCRIPTION = <<-EOT
