@@ -21,7 +21,7 @@ class TaskManager
 
   # prevent RubyVM from quitting
   def persist
-    say "Scheduler wird persistiert, alle Definitionen sollten geladen sein."
+    say "Scheduler will be persisted now, all definitions should be loaded now."
     scheduler(:internal).join
   end
 
