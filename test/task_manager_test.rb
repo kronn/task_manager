@@ -85,4 +85,22 @@ class TaskManagerTest < Test::Unit::TestCase
 
     tm.apply_configuration
   end
+
+  # verify that the building blocks are there
+
+  def test_taskmanager_has_a_schedule_method
+    assert_respond_to tm, :schedule
+    assert_equal 1, tm.method(:schedule).arity
+
+    assert_raise ArgumentError do
+      tm.schedule(:blah)
+    end
+
+    assert_nothing_raised do
+      tm.schedule(:blah) do |scheduler|
+        # the scheduler should be returned again
+        scheduler
+      end
+    end
+  end
 end

@@ -19,6 +19,12 @@ class TaskManager
     @schedulers[key] ||= Rufus::Scheduler.start_new
   end
 
+  # create a new job with a separate scheduler
+  def schedule(key)
+    raise ArgumentError unless block_given?
+    jobs[key] = yield scheduler(key)
+  end
+
   # prevent RubyVM from quitting
   def persist
     say "Scheduler will be persisted now, all definitions should be loaded now."
