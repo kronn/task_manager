@@ -25,6 +25,11 @@ class TaskManager
     jobs[key] = yield scheduler(key)
   end
 
+  # check wether a job is scheduled
+  def scheduled?(key)
+    !jobs[key].nil?
+  end
+
   # prevent RubyVM from quitting
   def persist
     say "Scheduler will be persisted now, all definitions should be loaded now."

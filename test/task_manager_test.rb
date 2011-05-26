@@ -103,4 +103,27 @@ class TaskManagerTest < Test::Unit::TestCase
       end
     end
   end
+
+  def test_schedule_method_stores_the_job
+    prev_size = tm.jobs.size
+
+    tm.schedule(:blah) do |scheduler|
+      # the scheduler should be returned again
+      scheduler
+    end
+
+    assert_equal (prev_size + 1), tm.jobs.size
+    assert_not_nil tm.jobs[:blah], tm.jobs.inspect
+  end
+
+  def test_taskmanager_knows_what_is_scheduled
+    assert_respond_to tm, :'scheduled?'
+    assert !tm.scheduled?(:undefined)
+
+    tm.schedule(:defined) do |s|
+      s
+    end
+
+    assert tm.scheduled?(:defined)
+  end
 end
