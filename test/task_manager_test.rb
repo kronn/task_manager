@@ -1,4 +1,4 @@
-require File.expand_path('../test_helper', __FILE__)
+require 'test_helper'
 
 class TaskManagerTest < Test::Unit::TestCase
   # remember to clean up after each test-run
