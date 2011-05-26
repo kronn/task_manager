@@ -74,4 +74,15 @@ class TaskManagerTest < Test::Unit::TestCase
     assert_equal expected, tm.config
   end
 
+  def test_taskmanager_can_apply_the_configration
+    tm.expects(:restart_jobs).with('* 6 * * *', ["navision_import"])
+    tm.expects(:navision_import).with('3h', 18, 0)
+    tm.expects(:cnet_import).with('30 0 * * *', false)
+
+    tm.config = configuration
+
+    assert_respond_to tm, :apply_configuration
+
+    tm.apply_configuration
+  end
 end

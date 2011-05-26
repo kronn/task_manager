@@ -60,4 +60,11 @@ class TaskManager
 
     config
   end
+
+  # apply configuration
+  def apply_configuration
+    config.each do |method, args|
+      send(method, *args)
+    end
+  end
 end
