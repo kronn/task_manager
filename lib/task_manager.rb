@@ -4,7 +4,7 @@ require 'pathname'
 
 class TaskManager
   attr_accessor :jobs
-  attr_reader :env, :path
+  attr_reader :env, :path, :config
 
   # create the necessary scheduler/job-storages and store a basepath and a environment
   def initialize(env = 'staging', path = '.')
@@ -46,5 +46,18 @@ class TaskManager
   # output a message with Time
   def say(msg)
     puts "#{Time.now} - #{msg}"
+  end
+
+  # store configuration from a hash
+  def config= hash
+    @config = {}
+
+    hash.keys.map do |key|
+      @config[key.to_sym] = hash[key].map do |r|
+        r.values.first
+      end
+    end
+
+    config
   end
 end

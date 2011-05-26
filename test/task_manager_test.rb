@@ -38,4 +38,40 @@ class TaskManagerTest < Test::Unit::TestCase
       tm.say('testing')
     end
   end
+
+  # we will be configuring the taskmanager with a hash, so lets define one
+  # this configuration would expect the necessary methods on a subclass of the TaskManager
+  def configuration
+    {
+      "restart_jobs"=>[
+        {"cron"=>"* 6 * * *"},
+        {"restart"=>["navision_import"]}
+      ],
+      "navision_import"=>[
+        {"every"=>"3h"},
+        {"stop_hour"=>18},
+        {"stop_minute"=>0}
+      ],
+      "cnet_import"=>[
+        {"cron"=>"30 0 * * *"},
+        {"confirm"=>false}
+      ]
+    }
+  end
+
+  def test_taskmanager_can_be_configured_with_hash
+    assert_respond_to tm, :'config='
+    assert_respond_to tm, :config
+
+    tm.config = configuration
+
+    expected = {
+      :restart_jobs=>["* 6 * * *", ["navision_import"]],
+      :navision_import=>["3h", 18, 0],
+      :cnet_import=>["30 0 * * *", false]
+    }
+
+    assert_equal expected, tm.config
+  end
+
 end
