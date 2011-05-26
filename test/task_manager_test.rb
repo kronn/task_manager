@@ -86,6 +86,38 @@ class TaskManagerTest < Test::Unit::TestCase
     tm.apply_configuration
   end
 
+  # lets create a TaskManager so we can test a little more
+  class CustomTaskManager < TaskManager
+    def navision_import(frequency, end_hr, end_min = 0)
+      schedule(:navision_import) do |scheduler|
+        scheduler.every(frequency, :blocking => true) do
+          (Time.now.hour >= end_hr && Time.now.min >= end_min) ?
+            unschedule(:navision_import) :
+            execute_task('echo "importing from navision"')
+        end
+      end
+    end
+
+    def cnet_import(cron_def, param)
+      schedule(:cnet_import) do |scheduler|
+        scheduler.cron(cron_def) do
+          arg = param ? "production" : "test"
+          execute_task(%(echo "importing from cnet server #{arg}" ))
+        end
+      end
+    end
+
+    def restart_jobs(cron_def, tasks)
+      schedule(:restart_jobs) do |scheduler|
+        scheduler.cron(cron_def) do
+          tasks.each do |task|
+            send(task, *config[task]) unless scheduled?(task)
+          end
+        end
+      end
+    end
+  end
+
   # verify that the building blocks are there
 
   def test_taskmanager_has_a_schedule_method
