@@ -5,6 +5,7 @@ class TaskManagerTest < Test::Unit::TestCase
   def teardown
     # @sut.unschedule(:internal)
     @sut = nil
+    @custom_tm = nil
   end
 
   # lets start by trying to create a taskmanager
@@ -119,7 +120,6 @@ class TaskManagerTest < Test::Unit::TestCase
   end
 
   # verify that the building blocks are there
-
   def test_taskmanager_has_a_schedule_method
     assert_respond_to tm, :schedule
     assert_equal 1, tm.method(:schedule).arity
@@ -157,5 +157,18 @@ class TaskManagerTest < Test::Unit::TestCase
     end
 
     assert tm.scheduled?(:defined)
+  end
+
+  # as we know that we have everyhing we need in the CustomTaskManager, lets test this one
+  def custom_tm
+    @custom_tm ||= CustomTaskManager.new
+  end
+
+  def test_custom_taskmanager_can_take_configuration
+    assert_nothing_raised Exception do
+      custom_tm.config = configuration
+      custom_tm.apply_configuration
+      assert_equal 3, custom_tm.jobs.size
+    end
   end
 end
