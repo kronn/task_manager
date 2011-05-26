@@ -35,7 +35,7 @@ class TaskManagerTest < Test::Unit::TestCase
 
   def test_taskmanager_can_output_messages
     assert_stdout_block MatchableString.new('testing') do
-      TaskManager.new.say('testing')
+      tm.say('testing')
     end
   end
 end
