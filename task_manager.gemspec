@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   # s.post_install_message = TaskManager::RELEASE_NOTES
 
   s.add_dependency 'rufus-scheduler', '~> 2.0.6'
+  s.add_dependency 'daemons', '~> 1.1.3'
 
   # for tests, needed
   s.add_development_dependency 'more_unit_test'
