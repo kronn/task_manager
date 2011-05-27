@@ -1,7 +1,7 @@
 # vim:ft=ruby:fileencoding=utf-8
 
 module TaskManager
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
   DATE = File.mtime(__FILE__)
   SUMMARY = 'A simple wrapper around the Rufus::Scheduler to have a more configurable setup.'
   DESCRIPTION = <<-EOT
