@@ -171,4 +171,28 @@ class TaskManagerTest < Test::Unit::TestCase
       assert_equal 3, custom_tm.jobs.size
     end
   end
+
+  # on more thing we can tweak from our subclass is the actual command we execute
+  def test_taskmanager_calls_method_to_construct_system_call
+    cmd = %(echo "importing from navision")
+    # I deliberatly redirect the result to /dev/null here because I don't test that the command is right
+    # it should just be executed. The next test shows what the full command string really looks like.
+    full_cmd = %(cd .; RAILS_ENV=staging echo "importing from navision" > /dev/null)
+
+    custom_tm.expects(:full_command_string).with(cmd).returns(full_cmd)
+
+    assert_stdout_block MatchableString.new(cmd) do
+      custom_tm.execute_task(cmd)
+    end
+  end
+
+  # somewhat more in depth, it works like this
+  def test_taskmanager_can_construct_a_full_command_string
+    assert_respond_to tm, :full_command_string
+    assert_equal 1, tm.method(:full_command_string).arity
+
+    expected = %(cd .; RAILS_ENV=staging echo "test" >>./log/staging.scheduler.task_output.log 2>>./log/staging.scheduler.log)
+
+    assert_equal expected, tm.full_command_string('echo "test"')
+  end
 end
