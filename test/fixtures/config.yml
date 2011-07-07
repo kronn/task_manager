@@ -1,0 +1,12 @@
+cnet_import:
+  - cron: '30 0 * * *'
+  - confirm: false
+navision_import:
+  - every: '3h'
+  - stop_hour: 18
+  - stop_minute: 0
+restart_jobs:
+  - cron: '* 6 * * *'
+  - restart:
+     - navision_import
+
