@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'daemons', '~> 1.1.3'
 
   # for tests, needed
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'more_unit_test'
   s.add_development_dependency 'mocha'
 end
