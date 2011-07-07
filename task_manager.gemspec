@@ -27,5 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rufus-scheduler', '~> 2.0.6'
 
   # for tests, needed
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'more_unit_test'
 end
