@@ -8,12 +8,18 @@ class TaskManager
   attr_accessor :jobs
   attr_reader :env, :path, :config
 
-  # create the necessary scheduler/job-storages and store a basepath and a environment
+  # create the necessary scheduler/job-stores and store a basepath and a
+  # environment
+  #
+  # STDOUT is set to sync=true so that the log is not held back by some
+  # output-buffering
   def initialize(env = 'staging', path = '.')
     @path = Pathname.new(path)
     @env = env.to_sym
     @jobs = {}
     @schedulers = {}
+
+    $stdout.sync = true
   end
 
   # return a named scheduler
@@ -63,7 +69,7 @@ class TaskManager
 
   # output a message with Time
   def say(msg)
-    puts "#{Time.now} - #{msg}"
+    $stdout.puts "#{Time.now} - #{msg}"
   end
 
   # store configuration from a hash
