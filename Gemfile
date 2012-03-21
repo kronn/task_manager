@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-group :development do
+group :maintenance do
   gem 'gem-release'
   gem 'watchr'
   # gem 'ruby-fsevent'
