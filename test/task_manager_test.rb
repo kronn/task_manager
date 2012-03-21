@@ -175,8 +175,9 @@ class TaskManagerTest < Test::Unit::TestCase
   # on more thing we can tweak from our subclass is the actual command we execute
   def test_taskmanager_calls_method_to_construct_system_call
     cmd = %(echo "importing from navision")
-    # I deliberatly redirect the result to /dev/null here because I don't test that the command is right
-    # it should just be executed. The next test shows what the full command string really looks like.
+    # I deliberatly redirect the result to /dev/null here because I don't test
+    # that the command is right it should just be executed. The next test shows
+    # what the full command string really looks like.
     full_cmd = %(cd .; RAILS_ENV=staging echo "importing from navision" > /dev/null)
 
     custom_tm.expects(:full_command_string).with(cmd).returns(full_cmd)
