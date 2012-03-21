@@ -5,7 +5,7 @@ task :test do
   $:.push(File.expand_path('../lib/', __FILE__))
   $:.push(File.expand_path('../test/', __FILE__))
 
-  require 'test/all'
+  require './test/all'
 end
 
 task :default => :test
