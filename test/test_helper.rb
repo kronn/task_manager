@@ -16,6 +16,9 @@ class Test::Unit::Catch_IO
   def print(string)
     write(string)
   end
+
+  def flush
+  end
 end
 
 require 'task_manager'
