@@ -23,12 +23,8 @@ class TaskManagerTest < Test::Unit::TestCase
 
   # assert_stdout_block does Expected==Actual internally, therefore I give a more flexbile expectation
   class MatchableString < String
-    def initialize(string)
-      @data = string
-    end
-
     def ==(other)
-      /#{Regexp.escape(@data)}/.match(other)
+      /#{Regexp.escape(self.to_s)}/.match(other)
     end
   end
 
