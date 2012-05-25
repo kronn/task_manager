@@ -1,5 +1,3 @@
-# vim:fileencoding=utf8
-
 # needs rufus-scheduler
 require 'rufus/scheduler'
 require 'pathname'

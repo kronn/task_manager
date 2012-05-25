@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# vim:ft=ruby:fileencoding=utf8
 
 require 'daemons'
 require 'pathname'
