@@ -6,5 +6,5 @@ group :maintenance do
   gem 'gem-release'
   gem 'watchr'
   # gem 'ruby-fsevent'
-  gem 'ruby-debug'
+  # gem 'ruby-debug'
 end
